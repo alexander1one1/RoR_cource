@@ -15,39 +15,30 @@ months = {
 }
 
 def is_leap(year)
-  if (year % 4 == 0)
-    if (year % 100 == 0)
-      if (year % 400 == 0)
-        return true
-      else
-        return false
-      end
-    else
-      return true
-    end
-  else
-    return false
-  end
+  return true if (year % 400).zero?
+  return true if (year % 4).zero? && (year % 100).nonzero?
+
+  false
 end
 
-puts "Tell me the year: "
+puts 'Tell me the year: '
 user_year = gets.chomp.to_i
 
 months[2] = 29 if is_leap(user_year)
 
 
 user_month = 0
-until (user_month  >= 1 && user_month <= 12) do
-  puts "Tell me number of the month: "
+until (user_month  >= 1 && user_month <= 12)
+  puts 'Tell me number of the month: '
   user_month = gets.chomp.to_i
 end
 
 user_days_can = Array.new
-(1..months[user_month]).each {|d| user_days_can << d}
+(1..months[user_month]).each { |day| user_days_can << day }
 
 user_day = 0
-until user_days_can.include?(user_day) do
-  puts "Tell me number of the day: "
+until user_days_can.include?(user_day)
+  puts 'Tell me number of the day: '
   user_day = gets.chomp.to_i
 end
 
