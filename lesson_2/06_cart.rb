@@ -38,10 +38,10 @@ loop do
 end
 
 total_price = 0
-goods.each { |name, info|
+goods.each do |name, info|
   this_good_total = info['count'] * info['price']
   puts "#{name}: #{info['count']} things by #{info['price'].round(2)}$. In total it cost: #{this_good_total.round(2)}$"
   total_price += this_good_total
-}
+end
 
 puts "Total to pay: #{total_price.round(2)}$"
