@@ -26,22 +26,20 @@ user_year = gets.chomp.to_i
 
 months[2] = 29 if is_leap(user_year)
 
-
 user_month = 0
-until (user_month  >= 1 && user_month <= 12)
+until (user_month >= 1 && user_month <= 12)
   puts 'Tell me number of the month: '
   user_month = gets.chomp.to_i
 end
 
-user_days_can = Array.new
-(1..months[user_month]).each { |day| user_days_can << day }
+user_days_can_be = []
+(1..months[user_month]).each { |day| user_days_can_be << day }
 
 user_day = 0
-until user_days_can.include?(user_day)
+until user_days_can_be.include?(user_day)
   puts 'Tell me number of the day: '
   user_day = gets.chomp.to_i
 end
-
 
 days_all = 0
 months.each {|m, days|
