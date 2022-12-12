@@ -7,6 +7,7 @@ class Train
     @number = number.to_s
     @type = type
     @wagons_count = wagons_count
+    @wagons_max = 8
     @speed = 0
     @route = nil
     @current_station = nil
@@ -37,7 +38,7 @@ class Train
     @wagons_count -= count if @speed.zero?
   end
 
-  def give_rounte(route: list)
+  def give_route(route)
     if route.first.trains_in_station.size >= route.first.trains_max
       puts "Can't put more trains on #{route.first.name}"
     elsif route.first.trains_in_station.include?(self)
@@ -51,11 +52,14 @@ class Train
   end
 
   def move_train(direct)
-    @current_station # next
-    @speed
+    puts "Move train to #{direct}"
+    # if direct == "forward"
+    #   encreace_speed(50)
+    # end
+    # @speed
   end
 
   def get_stations_arround
-    @current_station # - +
+    puts @route
   end
 end
