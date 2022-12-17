@@ -4,30 +4,40 @@ class Station
   attr_reader :name, :trains_max, :trains_in_station
   def initialize(name)
     @name = name
-    @trains_max = 1
+    @trains_max = 2
     @trains_in_station = []
   end
 
   def train_in(train)
-    @trains_in_station << train
-    puts "#{train.number} arrived in #{@name}"
+    if @trains_in_station.include?(train)
+      puts 'Train here already'
+    else
+      @trains_in_station << train
+      train.stop
+      puts "#{train.number} arrived in #{@name}"
+    end
   end
 
   def train_out(train)
-    @trains_in_station.delete_at(train)
-    puts "#{train.number} left #{@name}"
+    if @trains_in_station.include?(train)
+      @trains_in_station.delete(train)
+      puts "#{train.number} left #{@name}"
+      train.encreace_speed(50)
+    else
+      puts "#{train.number} not in #{@name}"
+    end
   end
 
   def get_trains_list
     # *? В данном случае лучше использовать self. ? Или @?
-    puts "Trains list on #{self.name}:"
+    puts "Trains list on #{@name}:"
     @trains_in_station.each do |train|
       puts "№#{train.number}, is #{train.type} with #{train.wagons_count} wagons"
     end
   end
 
   def get_trains_by_type(type)
-    puts "Trains with #{type} list on #{self.name}:"
+    puts "Trains with #{type} list on #{@name}:"
     # * Да, это не очень хорошо с отдельным каунтером и обычным циклом и условием, без изяществ
     count_trains = 0
     @trains_in_station.each do |train|
