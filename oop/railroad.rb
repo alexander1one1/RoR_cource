@@ -46,14 +46,26 @@ end
 puts "=== \nTrain moves:"
 routes[0].print_route
 trains[0].give_route(routes[0])
-trains[0].get_speed
-puts trains[0].print_stations_arround
-trains[0].move_train("forward")
-trains[0].move_train("reward")
-trains[0].move_train("forward")
-trains[0].move_train("forward")
-trains[0].move_train("forward")
-trains[0].move_train("forward")
+trains[0].print_speed
+trains[0].print_near_stations
+puts trains[0].move_to_next_station
+puts trains[0].move_to_prev_station
+puts trains[0].move_to_next_station
+puts trains[0].move_to_next_station
+puts trains[0].move_to_next_station
+puts trains[0].move_to_next_station
+
+train_0_cargo_trains_count = stations[0].get_count_trains_by_type(train_types[1])
+if train_0_cargo_trains_count > 0
+  puts "Trains with #{train_types[1]} list on #{@name}:"
+  train_0_cargo_trains = stations[0].get_trains_by_type(train_types[1])
+  train_0_cargo_trains.each do |train|
+    puts train.number
+  end
+else
+  puts "On #{stations[0]} no trains with type #{train_types[1]}"
+end
+
 
 trains.each { |train| puts train.inspect } # Вывод поездов
 routes.each { |route| puts route.inspect } # Вывод маршрутов
